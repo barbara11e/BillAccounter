@@ -50,6 +50,7 @@ namespace DataAccess
 
                     if (result.StatusCode != System.Net.HttpStatusCode.OK)
                     {
+                        //REVIEW: Правильно, где логгер?
                         ///
                         /// LOGGER
                         throw new InvalidOperationException("Запрос не может быть выполнен.");
@@ -70,7 +71,8 @@ namespace DataAccess
                     }
                     catch (Exception ex)
                     {
-                       /// Console.WriteLine($"Exception is {ex}");    LOGGER
+                        //REVIEW: Да-да, логгер
+                        /// Console.WriteLine($"Exception is {ex}");    LOGGER
                         throw;
                     }
                 });

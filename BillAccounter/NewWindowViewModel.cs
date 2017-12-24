@@ -50,12 +50,14 @@ namespace BillAccounter
         public NewWindowViewModel()
         {
             CloseNewWindowCommand = new RouteCommand(CloseNewWindow);
+            //REVIEW: enum?
             BillType = new List<string>()
             {
                 "Доход",
                 "Расход",
                 "В планах"
             };
+            //REVIEW: enum?
             Category = new List<string>
             {
                 "Наличные",

@@ -19,6 +19,7 @@ namespace DataAccess
                 throw new Exception("Excel is not properly installed");
             }
 
+            
             Microsoft.Office.Interop.Excel.Workbook xlWorkBook;
             Microsoft.Office.Interop.Excel.Worksheet xlWorkSheet;
             object misValue = System.Reflection.Missing.Value;
@@ -26,6 +27,7 @@ namespace DataAccess
             xlWorkBook = xlApp.Workbooks.Add(misValue);
             xlWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
 
+            //REVIEW: NRE?
             xlWorkSheet.Cells[1, 1] = "ID";
             xlWorkSheet.Cells[1, 2] = "Name";
             xlWorkSheet.Cells[2, 1] = "1";
@@ -33,6 +35,7 @@ namespace DataAccess
             xlWorkSheet.Cells[3, 1] = "2";
             xlWorkSheet.Cells[3, 2] = "Two";
 
+            //REVIEW: Имя файла в настройки или передавать параметром
             xlWorkBook.SaveAs("d:\\csharp-Excel.xls", Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
             xlWorkBook.Close(true, misValue, misValue);
             xlApp.Quit();

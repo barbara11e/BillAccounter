@@ -57,8 +57,9 @@ namespace DataAccess
                     var studentReader = cmd.ExecuteReader();
                     while (studentReader.Read())
                     {
-                        try
-                        {
+                    
+                    try
+                    {
                             result = (double)studentReader["Summ"];
                         }
                         catch(Exception e)

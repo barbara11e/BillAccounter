@@ -20,6 +20,7 @@ namespace BillAccounter
         {
             if (OpWin == true)
             {
+                //REVIEW: Тут может быть ашипка
                 TWindow w = new TWindow();
                 w.Show();
                 TViewModel vm = Activator.CreateInstance(typeof(TViewModel)) as TViewModel;

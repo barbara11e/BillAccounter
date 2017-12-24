@@ -20,6 +20,7 @@ namespace BillAccounter
         {
             List<Bill> result = new List<Bill>();
             Config connectionProperty = new Config();
+            
             connectionProperty.ConnectionString = BillAccounter.Properties.Settings.Default.ConnectionString;
 
             MainLogic ml = new MainLogic();

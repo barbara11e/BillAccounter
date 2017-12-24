@@ -18,6 +18,7 @@ namespace BL
         
         public void SetData(string tableName, string category, string billType, double amount, string date)
         {
+            //REVIEW: enum надо
             amount = (billType == "Расход") ? -amount : amount;
             Access ac = new Access();
             ac.SetDataToDataBase(tableName, category, billType, amount, date);
