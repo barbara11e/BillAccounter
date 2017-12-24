@@ -19,18 +19,15 @@ namespace DataAccess
         {
 
             string ResultCurrency =null;
-            //var arg = Environment.GetCommandLineArgs()[1];/////
-            //if (String.IsNullOrWhiteSpace(arg))
-            //    throw new ArgumentNullException("No param!");
-
-
+   
             using (HttpClient client = new HttpClient())
             {
+                //адрес запроса для получения текущего курса доллара в рублях
                 var request = $"https://openexchangerates.org/api/latest.json?app_id={AppID}";
 
                 Uri uri;
                 if (!Uri.TryCreate(request, UriKind.Absolute, out uri))
-                    throw new InvalidDataException("Could not create uri!");
+                    throw new InvalidDataException("Невозможно создание URI.");
 
                 var tRequest = client.GetAsync(uri, HttpCompletionOption.ResponseContentRead);
 
@@ -49,13 +46,13 @@ namespace DataAccess
 
                     var result = r.Result;
                     if (result == null)
-                        throw new InvalidOperationException("Can't reach server");
+                        throw new InvalidOperationException("Нет доступа к серверу.");
 
                     if (result.StatusCode != System.Net.HttpStatusCode.OK)
                     {
                         ///
                         /// LOGGER
-                        throw new InvalidOperationException("Can't process request");
+                        throw new InvalidOperationException("Запрос не может быть выполнен.");
                     }
 
                     try
@@ -67,7 +64,7 @@ namespace DataAccess
                             {
                                 DataContractJsonSerializer s = new DataContractJsonSerializer(typeof(CurrencyRate));
                                 var o = s.ReadObject(str) as CurrencyRate;
-                                ResultCurrency = o.Rate.ToString();
+                                ResultCurrency = o.Rate.ToString(); 
                             }
                         });
                     }

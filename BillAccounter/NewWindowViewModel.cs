@@ -20,13 +20,19 @@ namespace BillAccounter
         }
         public String TypeName { get; set; }
         public double Amount { get; set; }
-        public string Category { get; set; }
+        public List<string> Category { get; set; }
         public List<string> BillType { get; set; }
         private string _selectedBillType;
         public string SelectedBillType
         {
             get { return _selectedBillType; }
             set { _selectedBillType = value; }
+        }
+        private string _selectedCategory;
+        public string SelectedCategory
+        {
+            get { return _selectedCategory; }
+            set { _selectedCategory = value; }
         }
 
         private bool _canExecute;
@@ -49,6 +55,13 @@ namespace BillAccounter
                 "Доход",
                 "Расход",
                 "В планах"
+            };
+            Category = new List<string>
+            {
+                "Наличные",
+                "Банковская карта",
+                "Дополнительный"
+
             };
             Currency = new List<string>()
             {
@@ -74,7 +87,7 @@ namespace BillAccounter
         {
             get
             {
-                return _clickCommand ?? (_clickCommand = new CommandHandler(() => Bill.SetTypesToDataBase("Bill", Category, SelectedBillType, Amount, ThisDate), _canExecute));
+                return _clickCommand ?? (_clickCommand = new CommandHandler(() => Bill.SetTypesToDataBase("Bill", SelectedCategory, SelectedBillType, Amount, ThisDate), _canExecute));
             }
         }
 

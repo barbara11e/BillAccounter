@@ -43,9 +43,10 @@
 
             </-->
             <TextBlock Text="{Binding ThisDate}" Grid.Column="1"/>
-                <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding BillType}" SelectedItem="{Binding SelectedBillType}"  Margin="20,5"/>
+                <ComboBox Grid.Column="1" Grid.Row="1" ItemsSource="{Binding BillType}" 
+                          SelectedItem="{Binding SelectedBillType}"  Margin="20,5"/>
             <TextBox Grid.Column="1" Grid.Row="2"/>
-            <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Category}"/>
+            <ComboBox ItemsSource="{Binding Category}" Grid.Column="1" Grid.Row="3" SelectedItem="{Binding SelectedCategory}" Margin="20,5"/>
             <StackPanel Grid.Column="1" Grid.Row="4" Orientation="Horizontal">
                 <TextBox Width="185" >
                     <Binding Path="Amount">
