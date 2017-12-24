@@ -28,6 +28,15 @@ namespace BillAccounter
             get { return _selectedBillType; }
             set { _selectedBillType= value; }
         }
+        private ICommand _command;
+        public ICommand GenerateFile
+        {
+            get
+            {
+                return _command ?? (_command = new CommandHandler(() => MainLogic.GenerateExcel(), _canExecute));
+            }
+        }
+
         private bool _canExecute;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -40,6 +49,7 @@ namespace BillAccounter
                 handler(this, new PropertyChangedEventArgs(name));
             }
         }
+
          public MainWindowViewModel()
         {
             CloseNewWindowCommand = new RouteCommand(CloseNewWindow);

@@ -18,7 +18,7 @@ namespace BL
         
         public void SetData(string tableName, string category, string billType, double amount, string date)
         {
-            amount = (category == "Расход") ? amount : -amount;
+            amount = (billType == "Расход") ? -amount : amount;
             Access ac = new Access();
             ac.SetDataToDataBase(tableName, category, billType, amount, date);
             //CurrencyRequest makeRequest = new CurrencyRequest();
@@ -28,6 +28,13 @@ namespace BL
         {
             CurrencyRequest makeRequest = new CurrencyRequest();
             return makeRequest.GetCurrency();
+
+        }
+        public static void GenerateExcel()
+        {
+            FileGenerator generator = new FileGenerator();
+            FileGenerator.GenerateExcel();
+
         }
         public double GetDataFromDataBase()
         {

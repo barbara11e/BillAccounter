@@ -14,8 +14,8 @@ namespace DataAccess
     public class Access: IDAL
     {
         //Logger.InitLogger();//инициализация - требуется один раз в начале
-        Logger.InitLogger();
-        Logger.Log.Info("Logger initialized.");
+        //Logger.InitLogger();
+       // Logger.Log.Info("Logger initialized.");
         public void SetDataToDataBase(string tableName, string category, string billType, double amount, string date)
         {
             string cnString = DataAccess.Properties.Settings.Default.ConnectionString;
