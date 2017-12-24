@@ -58,15 +58,12 @@ namespace BillAccounter
             MainLogic ml = new MainLogic();
             CurrentBill = ml.GetDataFromDataBase();
             CurrentDollar = 60;
-            
-           
         }
 
         private void CloseNewWindow(Object p)
         {
             Routes.OpenNewWindow(false);
         }
-
 
         public ObservableCollection<BillViewModel> Bills { get; set; }
         protected void RaisePropertyChanged(string propertyName)
@@ -107,5 +104,5 @@ namespace BillAccounter
                 _action();
             }
         }
-    }//class
+    }
 }

@@ -21,9 +21,10 @@ namespace BillAccounter
             if (OpWin == true)
             {
                 //REVIEW: Тут может быть ашипка
+                //ммм.. Необработанное исключение?
                 TWindow w = new TWindow();
-                w.Show();
                 TViewModel vm = Activator.CreateInstance(typeof(TViewModel)) as TViewModel;
+                w.Show();
                 w.DataContext = vm;
             }
             else Application.Current.Windows.OfType<Window>().SingleOrDefault(w => w.IsActive).Close();

@@ -9,25 +9,29 @@ using System.Windows.Input;
 
 namespace BillAccounter
 {
+    
+/// <summary>
+/// FOR REVIEW:   Добавила, где требовалось enum 
+/// </summary>
+    enum BillTypeEnum { Доход =1, Расход =2, План=3};
+    enum CategoryEnum {Наличные, Кредитка, Дополнительный};
+    enum CurrencyEnum { USD, Руб};
+
     class NewWindowViewModel : INotifyPropertyChanged
     {
-        public ICommand CloseNewWindowCommand { get; private set; }
-        public List<string> Currency { get; set; }
         private DateTime _thisDate = DateTime.Today;
         public String ThisDate
         {
             get { return _thisDate.ToString("d"); }
         }
-        public String TypeName { get; set; }
-        public double Amount { get; set; }
-        public List<string> Category { get; set; }
-        public List<string> BillType { get; set; }
+
         private string _selectedBillType;
         public string SelectedBillType
         {
             get { return _selectedBillType; }
             set { _selectedBillType = value; }
         }
+
         private string _selectedCategory;
         public string SelectedCategory
         {
@@ -35,6 +39,23 @@ namespace BillAccounter
             set { _selectedCategory = value; }
         }
 
+        public List<string> BillType
+        {
+            get { return Enum.GetNames(typeof(BillTypeEnum)).ToList(); }
+        }
+        public List<string> Category
+        {
+            get
+            { return Enum.GetNames(typeof(CategoryEnum)).ToList(); }
+        }
+        public List<string> Currency
+        {
+            get
+            { return Enum.GetNames(typeof(CurrencyEnum)).ToList(); }
+        }
+
+        public String TypeName { get; set; }
+        public double Amount { get; set; }
         private bool _canExecute;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -47,28 +68,10 @@ namespace BillAccounter
                 handler(this, new PropertyChangedEventArgs(name));
             }
         }
+
         public NewWindowViewModel()
         {
             CloseNewWindowCommand = new RouteCommand(CloseNewWindow);
-            //REVIEW: enum?
-            BillType = new List<string>()
-            {
-                "Доход",
-                "Расход",
-                "В планах"
-            };
-            //REVIEW: enum?
-            Category = new List<string>
-            {
-                "Наличные",
-                "Банковская карта",
-                "Дополнительный"
-
-            };
-            Currency = new List<string>()
-            {
-                "$", "Руб."
-            };
             Bills = new ObservableCollection<BillViewModel>();
             _canExecute = true;
         }
@@ -83,6 +86,7 @@ namespace BillAccounter
             }
         }
 
+        public ICommand CloseNewWindowCommand { get; private set; }
         private ICommand _clickCommand;
         public ICommand Cancel { get; set; }
         public ICommand Save

@@ -22,8 +22,6 @@ namespace BL
             amount = (billType == "Расход") ? -amount : amount;
             Access ac = new Access();
             ac.SetDataToDataBase(tableName, category, billType, amount, date);
-            //CurrencyRequest makeRequest = new CurrencyRequest();
-             //makeRequest.GetCurrency();
         }
         public string GetCurrency()
         {

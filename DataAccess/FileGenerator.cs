@@ -26,7 +26,7 @@ namespace DataAccess
 
             xlWorkBook = xlApp.Workbooks.Add(misValue);
             xlWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
-
+            /*
             //REVIEW: NRE?
             xlWorkSheet.Cells[1, 1] = "ID";
             xlWorkSheet.Cells[1, 2] = "Name";
@@ -43,8 +43,8 @@ namespace DataAccess
             Marshal.ReleaseComObject(xlWorkSheet);
             Marshal.ReleaseComObject(xlWorkBook);
             Marshal.ReleaseComObject(xlApp);
-
-            //MessageBox.Show("Excel file created , you can find the file d:\\csharp-Excel.xls");
+            */
+            ///LOGGER "Excel file created , you can find the file d:\\csharp-Excel.xls"
         }
     }
 }
