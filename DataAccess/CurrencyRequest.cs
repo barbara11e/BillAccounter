@@ -1,8 +1,10 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Reflection;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading;
@@ -12,6 +14,7 @@ namespace DataAccess
 {
    public  class CurrencyRequest
     {
+        private readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         const string AppID = "37206e97ab5146fd9f30e00dab689f76";
         const int timeout = 5; 
 
@@ -53,6 +56,7 @@ namespace DataAccess
                         //REVIEW: Правильно, где логгер?
                         ///
                         /// LOGGER
+                        log.Error("Запрос не может быть выполнен.");
                         throw new InvalidOperationException("Запрос не может быть выполнен.");
                     }
 
@@ -73,6 +77,7 @@ namespace DataAccess
                     {
                         //REVIEW: Да-да, логгер
                         /// Console.WriteLine($"Exception is {ex}");    LOGGER
+                        log.Error("Десериализация не прошла успешно.");
                         throw;
                     }
                 });

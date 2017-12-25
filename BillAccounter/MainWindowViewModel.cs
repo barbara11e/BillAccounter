@@ -57,7 +57,7 @@ namespace BillAccounter
             Bills = new ObservableCollection<BillViewModel>();
             MainLogic ml = new MainLogic();
             CurrentBill = ml.GetDataFromDataBase();
-            CurrentDollar = 60;
+            CurrentDollar = 58.9;
         }
 
         private void CloseNewWindow(Object p)

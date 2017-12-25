@@ -1,6 +1,9 @@
-﻿using System;
+﻿using log4net;
+using log4net.Config;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +12,7 @@ namespace DataAccess
 {
    public  class FileGenerator
     {
-        
+        private readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         public static void GenerateExcel()
         {
             Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
@@ -17,8 +20,8 @@ namespace DataAccess
             if (xlApp == null)
             {
                 throw new Exception("Excel is not properly installed");
+               // log.Error("Excel is not properly installed");
             }
-
             
             Microsoft.Office.Interop.Excel.Workbook xlWorkBook;
             Microsoft.Office.Interop.Excel.Worksheet xlWorkSheet;
@@ -34,17 +37,17 @@ namespace DataAccess
             xlWorkSheet.Cells[2, 2] = "One";
             xlWorkSheet.Cells[3, 1] = "2";
             xlWorkSheet.Cells[3, 2] = "Two";
-
+            */
             //REVIEW: Имя файла в настройки или передавать параметром
-            xlWorkBook.SaveAs("d:\\csharp-Excel.xls", Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+            string excelPath = DataAccess.Properties.Settings.Default.ExcelFilePath;
+            xlWorkBook.SaveAs(excelPath, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
             xlWorkBook.Close(true, misValue, misValue);
             xlApp.Quit();
 
             Marshal.ReleaseComObject(xlWorkSheet);
             Marshal.ReleaseComObject(xlWorkBook);
             Marshal.ReleaseComObject(xlApp);
-            */
-            ///LOGGER "Excel file created , you can find the file d:\\csharp-Excel.xls"
+            //log.Error("Некорректные данные!");
         }
     }
 }

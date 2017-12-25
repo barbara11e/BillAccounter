@@ -5,5 +5,8 @@
     <Setting Name="ConnectionString" Type="System.String" Scope="User">
       <Value Profile="(Default)">Server=ALL\MSSQLSERVER01;Database=HomeAccount;Trusted_Connection=true</Value>
     </Setting>
+    <Setting Name="ExcelFilePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">c:\\csharp-Excel.xls</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

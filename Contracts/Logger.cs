@@ -22,5 +22,7 @@ namespace Contracts
             XmlConfigurator.Configure();
         }
     }
+
+    
  
 }

@@ -34,5 +34,17 @@ namespace DataAccess.Properties {
                 this["ConnectionString"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("c:\\\\csharp-Excel.xls")]
+        public string ExcelFilePath {
+            get {
+                return ((string)(this["ExcelFilePath"]));
+            }
+            set {
+                this["ExcelFilePath"] = value;
+            }
+        }
     }
 }
